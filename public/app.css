@@ -1,0 +1,171 @@
+label {
+  display: block;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+p {
+  font-family: "Arial";
+  font-size: 12px;
+}
+
+input, .select {
+  width: 100%;
+  height: 33px;
+}
+
+select {
+  border: 0;
+  outline: 1px solid #CCC;
+  background-color: white;
+  height: 2em;
+  width: 10em;
+  font-size: 1em;
+}
+
+.ng-message {
+  margin-top: 2px;
+  font-size: 9px;
+}
+
+.row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: left;
+}
+
+.row > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+
+.main .user_form {
+  margin-top: 45px;
+  margin-left: 27.5%;
+  width: 45%;
+}
+.main .user_form .form_group {
+  background: #F2F2F2;
+}
+.main .user_form .row .first_name {
+  height: 50px;
+  width: 46.5%;
+  display: inline-block;
+}
+.main .user_form .row .last_name {
+  height: 50px;
+  width: 46.5%;
+  display: inline-block;
+  float: right;
+}
+.main .user_form .row .country {
+  height: 50px;
+  display: inline-block;
+  width: 46.5%;
+}
+.main .user_form .row .state {
+  height: 50px;
+  display: inline-block;
+  width: 46.55%;
+  float: right;
+}
+.main .user_form .row .industry {
+  height: 50px;
+  display: inline-block;
+  width: 46.5%;
+}
+.main .user_form .row .zip_postal {
+  height: 50px;
+  display: inline-block;
+  width: 46.5%;
+}
+.main .user_form .row .password {
+  height: 50px;
+  display: inline-block;
+  width: 46.5%;
+}
+.main .user_form .row .confirm_password {
+  height: 50px;
+  display: inline-block;
+  width: 46.5%;
+  float: right;
+}
+.main .user_form .row .checkbox {
+  height: 20px;
+  width: 46.5%;
+  display: inline-flex;
+}
+.main .user_form .row .checkbox label {
+  padding-top: 1.75%;
+  margin-left: 4px;
+}
+.main .user_form .row .checkbox input {
+  width: 5%;
+}
+.main .user_form .register_container {
+  text-align: center;
+  height: 120px;
+}
+.main .user_form .register_container .registration_message {
+  font-size: 13px;
+}
+.main .user_form .register_container .register {
+  width: 20%;
+  height: 45px;
+  margin-top: 15px;
+  background: green;
+  color: white;
+  font-family: "Arial", Gadget, sans-serif;
+}
+
+@media all and (min-width: 600px) {
+  .aside {
+    flex: 1 auto;
+  }
+}
+@media all and (min-width: 800px) {
+  .first_name {
+    order: 1;
+  }
+
+  .last_name {
+    order: 2;
+  }
+
+  .country {
+    order: 1;
+  }
+
+  .state {
+    order: 2;
+  }
+
+  .industry {
+    order: 1;
+  }
+
+  .zip_postal {
+    order: 2;
+  }
+
+  .password {
+    order: 1;
+  }
+
+  .confirm_password {
+    order: 2;
+  }
+}
+.state-message {
+  position: absolute;
+  right: 28.5%;
+}
+
+/*# sourceMappingURL=app.css.map */

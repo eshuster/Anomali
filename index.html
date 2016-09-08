@@ -1,0 +1,161 @@
+<head>
+  <link rel="stylesheet" href="/app.css"/>
+  <script type="text/javascript" src="/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+  <script type="text/javascript" src="/app.js"></script>
+  <script type="text/javascript" src="/registrationController.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="registrationCtrl as reg" class="main">
+  <form name="userFieldForm" class="user_form" ng-submit="reg.addUser()" novalidate>
+    <div class="form_group" >
+      <div class="row">
+        <div class="first_name aside">
+          <label>FIRST NAME<i class="icon">*</i></label>
+          <input  type="text"
+                  class="form-control"
+                  name="first_name"
+                  ng-model="reg.user.first_name"
+                  required>
+          <div class="help-block" ng-messages="userFieldForm.first_name.$error" ng-show="userFieldForm.first_name.$touched">
+            <p class="ng-message" ng-message="required">Your First Name is required.</p>
+          </div>
+        </div>
+
+        <div class="last_name aside">
+          <label>LAST NAME<i class="icon">*</i></label>
+          <input  type="text" class="form-control" name="last_name" ng-model="reg.user.last_name"
+                  required>
+          <div class="help-block" ng-messages="userFieldForm.last_name.$error" ng-show="userFieldForm.last_name.$touched">
+            <p class="ng-message" ng-message="required">Your Last Name is required.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="company_name">
+          <label>COMPANY NAME<i class="icon">*</i></label>
+          <input  type="text" class="form-control" name="company_name" ng-model="reg.user.company_name"
+                  required>
+
+          <div class="help-block" ng-messages="userFieldForm.company_name.$error" ng-show="userFieldForm.company_name.$touched">
+            <p class="ng-message" ng-message="required">Company Name is required.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="work_email">
+          <label>WORK EMAIL<i class="icon">*</i></label>
+          <input  type="email" class="form-control" name="work_email" ng-model="reg.user.work_email"
+                  required>
+
+          <div class="help-block" ng-messages="userFieldForm.work_email.$error" ng-show="userFieldForm.work_email.$touched">
+            <p class="ng-message" ng-message="required">Your email is required.</p>
+            <p class="ng-message" ng-message="email">This needs to be a valid email</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="phone_number">
+          <label>PHONE NUMBER<i class="icon">*</i></label>
+          <input  type="text" class="form-control" name="phone_number" ng-model="reg.user.phone_number"
+                  ng-mminlength="7"
+                  ng-maxlength="11"
+                  ng-pattern="reg.onlyNumbers"
+                  required>
+          <div class="help-block" ng-messages="userFieldForm.phone_number.$error" ng-show="userFieldForm.phone_number.$touched">
+            <p class="ng-message" ng-message="required">Your Phone Number is required.</p>
+            <p class="ng-message" ng-message="pattern">Only Numbers Are Alowed</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="country aside">
+          <label>COUNTRY<i class="icon">*</i></label>
+            <select name="country" class="select"
+                    ng-model="reg.user.country"
+                    ng-change="reg.unlock(reg.user.country)"
+                    ng-options="country.countryID as country.countryName for country in reg.countries"
+                    required>
+                <option value="">---Please select---</option>
+            </select>
+          <div class="help-block" ng-messages="userFieldForm.country.$error" ng-show="userFieldForm.country.$touched">
+            <p class="ng-message state-message" ng-message="required">State is required.</p>
+          </div>
+        </div>
+
+        <div class="state aside">
+          <label>STATE<i class="icon">*</i></label>
+          <select name="country" class="select"
+                    ng-model="reg.user.state"
+                    ng-required="reg.user.country == 1"
+                    ng-disabled="reg.stateUnlocked == false"
+                    ng-options="state.stateID as state.stateName for state in reg.states">
+                <option value="">---Please select---</option>
+            </select>
+          <div class="help-block" ng-messages="userFieldForm.state.$error" ng-show="userFieldForm.state.$touched">
+            <p class="ng-message" ng-message="required">State is required.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="industry aside">
+          <label>INDUSTRY<i class="icon">*</i></label>
+          <input  type="text" class="form-control" name="industry" ng-model="reg.user.industry"
+                  required>
+          <div class="help-block" ng-messages="userFieldForm.industry.$error" ng-show="userFieldForm.industry.$touched">
+            <p class="ng-message" ng-message="required">Your Industry is required.</p>
+          </div>
+        </div>
+        <div class="zip_postal aside">
+          <label>ZIP/POSTAL<i class="icon">*</i></label>
+          <input  type="text" class="form-control" name="zip_postal" ng-model="reg.user.zip_postal"
+                  required>
+          <div class="help-block" ng-messages="userFieldForm.zip_postal.$error" ng-show="userFieldForm.zip_postal.$touched">
+            <p class="ng-message" ng-message="required">Your Zipcode is required.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="password aside">
+          <label>PASSWORD<i class="icon">*</i></label>
+          <input  type="password" class="form-control" name="password" ng-model="reg.user.password"
+                  ng-minlength="8"
+                  ng-maxlength="30"
+                  ng-pattern="reg.passwordCombination"
+                  required>
+          <div class="help-block" ng-messages="userFieldForm.password.$error" ng-show="userFieldForm.password.$touched">
+            <p class="ng-message" ng-message="required">Password is required.</p>
+            <p class="ng-message" ng-message="minlength">This field is too short</p>
+            <p class="ng-message" ng-message="pattern">Must contain one lower &amp; uppercase letter; one non-alpha character</p>
+          </div>
+        </div>
+        <div class="confirm_password aside">
+          <label>CONFIRM PASSWORD<i class="icon">*</i></label>
+          <input  type="password" class="form-control" name="confirm_password" ng-model="reg.user.confirm_password"
+                  ng-minlength="8"
+                  ng-maxlength="30"
+                  required compare-to="reg.user.password"
+                  required>
+          <div class="help-block" ng-messages="userFieldForm.confirm_password.$error" ng-show="userFieldForm.confirm_password.$touched">
+            <p class="ng-message" ng-message="required">This field is required</p>
+            <p class="ng-message" ng-message="compareTo">Password must match.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="checkbox">
+          <input  type="checkbox" class="form-control" name="interested_in_partnership" ng-model="reg.user.interested_in_partnership"
+                  required>
+          <label >INTERESTED IN BECOMING A PARTNER</label>
+          <div class="help-block" ng-messages="userFieldForm.interested_in_partnership.$error" ng-show="userFieldForm.interested_in_partnership.$touched">
+            <p class="ng-message" ng-message="required">Agreeing is required.</p>
+          </div>
+        </div>
+      </div>
+      <div class="register_container">
+        <p class="registration_message">By clicking Register, you agree to Anomali's <a href="#">Terms of Use</a> and <a href="#">Private Policy</a>.</p>
+        <button ng-disabled="userFieldForm.$invalid" class="register">REGISTER</button>
+      </div>
+    </div>
+  </form>
+</body>
